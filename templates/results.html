@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="jumbotron mt-2">
+    {% if frankie %}
+    <h1 class="display-4" style="color:green">{{ frankie }}</h1>
+    <h2 class="lead">Yay! It's your favorite dog. Rest assured he is the real deal.</h2>
+    {% else %}
+    <h1 class="display-4" style="color:red">{{ frankie }}</h1>
+    <h2 class="lead"> Who is this imposter?! Get me Frankie!</h2>
+    {% endif %}
+    <hr class="my-4">
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="{{ url_for('index')}}" role="button">Test another image.</a>
+    </p>
+  </div>
+{% endblock %}
