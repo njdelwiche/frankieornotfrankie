@@ -31,11 +31,9 @@ def upload():
     if request.method == "POST":
         print(request.files)
         if 'file' not in request.files:
-            print("BADDDD")
             return redirect(url_for('index'))
 
     image = request.files["file"]
-    print(image)
     if image and allowed_file(image.filename):
         img = cv2.imdecode(np.fromstring(request.files['file'].read(), np.uint8), cv2.IMREAD_UNCHANGED)
         resized_img = cv2.resize(img, dsize=(IMG_WIDTH, IMG_HEIGHT))
@@ -43,6 +41,10 @@ def upload():
         prediction = MODEL.predict([np.array(resized_img).reshape(1, IMG_WIDTH, IMG_HEIGHT, 3)])
         frankie = True if prediction[0] > .5 else False
         return render_template("results.html", frankie=frankie)
+    else:
+        print("BADDDD")
+        return redirect(url_for('index'))
+
 
 
 
