@@ -42,7 +42,6 @@ def upload():
         frankie = True if prediction[0] > .5 else False
         return render_template("results.html", frankie=frankie)
     else:
-        print("BADDDD")
         return redirect(url_for('index'))
 
 
